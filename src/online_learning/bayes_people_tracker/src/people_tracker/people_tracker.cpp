@@ -39,17 +39,17 @@ PeopleTracker::PeopleTracker() : detect_seq(0), marker_seq(0) {
   // Create a status callback.
   ros::SubscriberStatusCallback con_cb = boost::bind(&PeopleTracker::connectCallback, this, boost::ref(n));
   
-  private_node_handle.param("positions", pub_topic, std::string("/people_tracker/positions_final"));
+  private_node_handle.param("positions", pub_topic, std::string("/people_tracker/positions"));
   pub_detect = n.advertise<bayes_people_tracker::PeopleTracker>(pub_topic.c_str(), 100, con_cb, con_cb);
-  private_node_handle.param("pose", pub_topic_pose, std::string("/people_tracker/pose_final"));
+  private_node_handle.param("pose", pub_topic_pose, std::string("/people_tracker/pose"));
   pub_pose = n.advertise<geometry_msgs::PoseStamped>(pub_topic_pose.c_str(), 100, con_cb, con_cb);
-  private_node_handle.param("pose_array", pub_topic_pose_array, std::string("/people_tracker/pose_array_final"));
+  private_node_handle.param("pose_array", pub_topic_pose_array, std::string("/people_tracker/pose_array"));
   pub_pose_array = n.advertise<geometry_msgs::PoseArray>(pub_topic_pose_array.c_str(), 100, con_cb, con_cb);
-  private_node_handle.param("people", pub_topic_people, std::string("/people_tracker/people_final"));
+  private_node_handle.param("people", pub_topic_people, std::string("/people_tracker/people"));
   pub_people = n.advertise<people_msgs::People>(pub_topic_people.c_str(), 100, con_cb, con_cb);
-  private_node_handle.param("trajectory", pub_topic_trajectory, std::string("/people_tracker/trajectory_final"));
+  private_node_handle.param("trajectory", pub_topic_trajectory, std::string("/people_tracker/trajectory"));
   pub_trajectory = n.advertise<geometry_msgs::PoseArray>(pub_topic_trajectory.c_str(), 100, con_cb, con_cb);
-  private_node_handle.param("marker", pub_topic_marker, std::string("/people_tracker/marker_array_final"));
+  private_node_handle.param("marker", pub_topic_marker, std::string("/people_tracker/marker_array"));
   pub_marker = n.advertise<visualization_msgs::MarkerArray>(pub_topic_marker.c_str(), 100, con_cb, con_cb);
   
   boost::thread tracking_thread(boost::bind(&PeopleTracker::trackingThread, this));
@@ -231,8 +231,8 @@ void PeopleTracker::trackingThread() {
 	pids.push_back(it->first);
   geometry_msgs::Pose thisid = it->second[0];
   geometry_msgs::Pose tmp;
-  std::cout<<(thisid.position.x)/0.04364<<std::endl;
-  std::cout<<thisid.position.x<<std::endl;
+  //std::cout<<(thisid.position.x)/0.04364<<std::endl;
+  //std::cout<<thisid.position.x<<std::endl;
   tmp.position.x = 1605.4 - (((float)(thisid.position.x))/0.04364);
   tmp.position.y = 1541.17 - (((float)(thisid.position.y))/0.04364);;
   tmp.position.z = thisid.position.z;

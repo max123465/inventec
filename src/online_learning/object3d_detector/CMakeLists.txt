@@ -14,11 +14,11 @@ catkin_package(
   CATKIN_DEPENDS bayes_tracking)
 
 ### Offline version
-add_executable(object3d_detector_inventec_final src/object3d_detector_inventec_final.cpp src/svm.cpp)
+add_executable(object3d_detector src/object3d_detector_inventec_final.cpp src/svm.cpp)
 
-target_link_libraries(object3d_detector_inventec_final ${catkin_LIBRARIES})
+target_link_libraries(object3d_detector ${catkin_LIBRARIES})
 if(catkin_EXPORTED_TARGETS)
-  add_dependencies(object3d_detector_inventec_final ${catkin_EXPORTED_TARGETS})
+  add_dependencies(object3d_detector ${catkin_EXPORTED_TARGETS})
 endif()
 
 #add_executable(crop src/crop.cpp src/extract.cpp)
