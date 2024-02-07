@@ -122,7 +122,7 @@ Object3dDetector::Object3dDetector() {
   private_nh.param<std::string>("model_file_name", model_file_name_, "");
   private_nh.param<std::string>("range_file_name", range_file_name_, "");
 
-
+/*
   glob_t glob_result_pcd;
   //glob("/home/aemass/Desktop/data/1212_1/tmp2/*" ,GLOB_TILDE,NULL,&glob_result_pcd);
   glob("/home/aemass/aemass_ws/data/inventec/1212_Inventec/4/pointcloud_4_delete/data/*" ,GLOB_TILDE,NULL,&glob_result_pcd);
@@ -137,8 +137,8 @@ Object3dDetector::Object3dDetector() {
     std::string gt = glob_gt.gl_pathv[i];
     gt_path.push_back(gt);
   }
-
-  pcl::io::loadPCDFile<pcl::PointXYZI> ("/home/aemass/aemass_ws/data/inventec/650.992488540.pcd", *background_cloud);
+*/
+  pcl::io::loadPCDFile<pcl::PointXYZI> ("/home/aemass/inventec/data/650.992488540.pcd", *background_cloud);
   for(auto &point : *background_cloud){
     //std::cout<<point<<std::endl;
     point.intensity = 1;
